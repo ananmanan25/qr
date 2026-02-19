@@ -6,6 +6,8 @@
     <title>WELCOME: ANANMANAN</title>
     <meta name="description" content="Shop ANANMANAN for the latest in futuristic wear. Explore our innovative collection of tech-inspired clothing, accessories, and men's fashion.">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
@@ -18,8 +20,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Orbitron&family=Syncopate:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="https://ananmanan.store/i/annn.png" sizes="32x32">
     <link rel="apple-touch-icon" href="https://ananmanan.store/i/annn.png">
@@ -30,12 +31,13 @@
     <meta property="og:image" content="https://ananmanan.store/i/annn.png">
     <meta property="og:url" content="https://ananmanan.store">
     <meta name="twitter:card" content="summary_large_image">
+
     <style>
         :root {
-            --accent: #00ff0d; /* Gold */
+            --accent: #00ff0d; /* Neon Green */
             --dark-bg: #050505;
             --glass: rgba(10, 10, 10, 0.85);
-            --border: rgba(9, 255, 0, 0.25);
+            --border: rgba(0, 255, 13, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,8 +57,8 @@
         .mesh-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 20% 30%, #1a1a1a 0%, #050505 50%),
-                        radial-gradient(circle at 80% 70%, #221e14 0%, #050505 50%);
+            background: radial-gradient(circle at 20% 30%, #0a220a 0%, #050505 50%),
+                        radial-gradient(circle at 80% 70%, #051405 0%, #050505 50%);
             z-index: -1;
         }
 
@@ -84,8 +86,8 @@
             box-shadow: 0 50px 100px rgba(0,0,0,0.8);
         }
 
-        .brand-name { font-family: 'Syncopate'; font-size: 1.6rem; letter-spacing: 10px; margin-bottom: 5px; }
-        .sub-tag { font-family: 'Orbitron'; font-size: 0.55rem; color: var(--accent); letter-spacing: 4px; margin-bottom: 30px; }
+        .brand-name { font-family: 'Syncopate', sans-serif; font-size: 1.6rem; letter-spacing: 10px; margin-bottom: 5px; font-weight: 700; }
+        .sub-tag { font-family: 'Orbitron', sans-serif; font-size: 0.55rem; color: var(--accent); letter-spacing: 4px; margin-bottom: 30px; }
 
         /* --- PRODUCT SLIDER --- */
         .slider-container {
@@ -100,17 +102,12 @@
 
         .slider-track {
             display: flex;
-            width: 300%; /* 3 items */
+            width: 300%;
             height: 100%;
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .slide {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
+        .slide { width: 100%; height: 100%; position: relative; }
         .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
 
         .slide-label {
@@ -127,12 +124,15 @@
             border: 1px solid rgba(255,255,255,0.05);
             padding: 16px; border-radius: 18px;
             text-decoration: none; color: white;
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex; align-items: center; justify-content: flex-start;
+            gap: 15px;
             transition: 0.3s; font-size: 0.75rem; letter-spacing: 1px;
         }
 
+        .link-item i { width: 20px; text-align: center; font-size: 1.1rem; }
+
         .link-item:hover {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(0, 255, 13, 0.1);
             border-color: var(--accent);
             transform: scale(1.02);
         }
@@ -149,60 +149,60 @@
     <div class="mesh-bg"></div>
 
     <div id="loader">
-        <div class="term-line">> INITIALIZING_YOUR VIBE...</div>
+        <div class="term-line">> INITIALIZING_YOUR_VIBE...</div>
         <div class="term-line">> LOADING_YOUR_MOMENTS...</div>
         <div class="term-line">> WELCOME_ANANMANAN_v2.1...</div>
     </div>
 
     <div class="container">
         <div class="brand-card">
-            <img src="annn.png" style="width: 80px; margin-bottom: 20px;">
+            <img src="annn.png" alt="Logo" style="width: 80px; margin-bottom: 20px;">
             <h1 class="brand-name">ANANMANAN</h1>
-            <p class="sub-tag">FUTURERISTIC WEAR</p>
+            <p class="sub-tag">FUTURISTIC WEAR</p>
 
             <div class="slider-container">
                 <div class="slider-track" id="track">
                     <div class="slide">
-                        <img src="8.png">
+                        <img src="8.png" alt="Product 1">
                         <div class="slide-label">We Are Always Looking At You</div>
                     </div>
                     <div class="slide">
-                        <img src="p.png">
+                        <img src="p.png" alt="Product 2">
                         <div class="slide-label">Wear The Vibe</div>
                     </div>
                     <div class="slide">
-                        <img src="u.jpg">
-                        <div class="slide-label">Adventure Start's Hear</div>
+                        <img src="u.jpg" alt="Product 3">
+                        <div class="slide-label">Adventure Starts Here</div>
                     </div>
                 </div>
             </div>
 
             <div class="link-stack">
                 <a href="https://ananmanan.store" class="link-item cta-btn">
-                    <span>SHOP NEW ARRIVALS</span>
                     <i class="fas fa-bolt"></i>
+                    <span>SHOP NEW ARRIVALS</span>
                 </a>
                 <a href="https://www.instagram.com/wear.ananmanan" class="link-item">
-                    <span>Follow Instagram</span>
                     <i class="fab fa-instagram"></i>
+                    <span>Follow Instagram</span>
                 </a>
                  <a href="https://www.facebook.com/ananmanan327" class="link-item">
-                    <span>Follow Facebook</span>
                     <i class="fab fa-facebook-f"></i>
+                    <span>Follow Facebook</span>
                 </a>
                 <a href="https://www.tiktok.com/@wear.ananmanan" class="link-item">
-                    <span>Follow TikTok</span>
                     <i class="fab fa-tiktok"></i>
+                    <span>Follow TikTok</span>
                 </a>
                 <a href="https://discord.gg/PG9BAPf8" class="link-item">
+                    <i class="fab fa-discord"></i>
                     <span>Join Discord</span>
-                    <i class="fab fa-Discord"></i>
                 </a>
             </div>
         </div>
 
         <footer>
-           Adventure Start's Hear<br>
+           Adventure Starts Here<br>
             &copy; 2026 Ananmanan Store. All rights reserved.
         </footer>
     </div>
@@ -226,8 +226,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
