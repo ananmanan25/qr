@@ -3,41 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME: ANANMANAN</title>
-    <meta name="description" content="Shop ANANMANAN for the latest in futuristic wear. Explore our innovative collection of tech-inspired clothing, accessories, and men's fashion.">
-
+    <title>ANANMANAN | Links</title>
+    <meta name="description" content="Shop ANANMANAN for the latest in futuristic wear.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Organization",
-      "name": "ANANMANAN",
-      "url": "https://ananmanan.store",
-      "logo": "https://ananmanan.store/i/annn.png",
-      "image": "https://ananmanan.store/i/annn.png",
-      "description": "Destination for Futuristic Wear and Innovative Apparel."
-    }
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Orbitron&family=Syncopate:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-    <link rel="icon" type="image/png" href="https://ananmanan.store/i/annn.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="https://ananmanan.store/i/annn.png">
-    <link rel="shortcut icon" href="https://ananmanan.store/i/annn.png" type="image/x-icon">
-
-    <meta property="og:title" content="ANANMANAN | Futuristic Streetwear">
-    <meta property="og:description" content="Innovative Apparel and Tech-inspired clothing.">
-    <meta property="og:image" content="https://ananmanan.store/i/annn.png">
-    <meta property="og:url" content="https://ananmanan.store">
-    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://ananmanan.store/i/annn.png">
 
     <style>
         :root {
-            --accent: #00ff0d; /* Neon Green */
-            --dark-bg: #050505;
-            --glass: rgba(10, 10, 10, 0.85);
-            --border: rgba(0, 255, 13, 0.25);
+            --accent: #00ff0d;
+            --accent2: #00ccff;
+            --dark-bg: #030303;
+            --glass: rgba(8, 8, 8, 0.9);
+            --border: rgba(0, 255, 13, 0.2);
+            --glow: rgba(0, 255, 13, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,176 +32,545 @@
             overflow-x: hidden;
         }
 
-        /* --- DYNAMIC MESH BACKGROUND --- */
-        .mesh-bg {
+        /* ---- BACKGROUND ---- */
+        .bg-canvas {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 20% 30%, #0a220a 0%, #050505 50%),
-                        radial-gradient(circle at 80% 70%, #051405 0%, #050505 50%);
-            z-index: -1;
-        }
-
-        /* --- TERMINAL LOADER --- */
-        #loader {
-            position: fixed; inset: 0; background: #000;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 40px; z-index: 9999;
-            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
-            text-align: center;
-        }
-
-        .term-line { color: var(--accent); font-size: 0.7rem; margin-bottom: 5px; opacity: 0; }
-
-        /* --- MAIN CARD --- */
-        .container { width: 95%; max-width: 420px; z-index: 10; padding: 20px 0; }
-
-        .brand-card {
-            background: var(--glass);
-            backdrop-filter: blur(30px);
-            padding: 35px 20px;
-            border-radius: 40px;
-            border: 1px solid var(--border);
-            text-align: center;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-        }
-
-        .brand-name { font-family: 'Syncopate', sans-serif; font-size: 1.6rem; letter-spacing: 10px; margin-bottom: 5px; font-weight: 700; }
-        .sub-tag { font-family: 'Orbitron', sans-serif; font-size: 0.55rem; color: var(--accent); letter-spacing: 4px; margin-bottom: 30px; }
-
-        /* --- PRODUCT SLIDER --- */
-        .slider-container {
-            width: 100%;
-            height: 220px;
+            inset: 0;
+            z-index: -2;
             overflow: hidden;
-            border-radius: 25px;
-            margin-bottom: 25px;
+        }
+
+        .bg-canvas::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            top: -200px; left: -200px;
+            background: radial-gradient(circle, rgba(0,255,13,0.04) 0%, transparent 70%);
+            animation: drift1 12s ease-in-out infinite alternate;
+        }
+
+        .bg-canvas::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            bottom: -150px; right: -150px;
+            background: radial-gradient(circle, rgba(0,204,255,0.04) 0%, transparent 70%);
+            animation: drift2 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift1 { to { transform: translate(80px, 100px) scale(1.2); } }
+        @keyframes drift2 { to { transform: translate(-80px, -60px) scale(1.15); } }
+
+        /* Grid lines */
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(0,255,13,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,13,0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+        }
+
+        /* ---- LOADER ---- */
+        #loader {
+            position: fixed; inset: 0;
+            background: #000;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; gap: 10px;
+            z-index: 9999;
+            transition: clip-path 0.9s cubic-bezier(0.85, 0, 0.15, 1);
+            clip-path: inset(0 0 0 0);
+        }
+        #loader.hidden { clip-path: inset(100% 0 0 0); }
+
+        .loader-logo {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0;
+            animation: fadeUp 0.5s 0.3s forwards;
+        }
+
+        .loader-bar-wrap {
+            width: 200px;
+            height: 2px;
+            background: rgba(0,255,13,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 0.5s 0.6s forwards;
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0;
+            animation: loadFill 1.4s 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        .loader-text {
+            font-size: 0.55rem;
+            color: rgba(0,255,13,0.6);
+            letter-spacing: 4px;
+            opacity: 0;
+            animation: fadeUp 0.5s 1s forwards;
+        }
+
+        @keyframes loadFill { to { width: 100%; } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+        /* ---- MAIN CONTAINER ---- */
+        .container {
+            width: 95%;
+            max-width: 430px;
+            padding: 24px 0 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .container.visible { opacity: 1; transform: none; }
+
+        /* ---- HEADER ---- */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .logo-wrap {
             position: relative;
-            border: 1px solid rgba(255,255,255,0.05);
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .logo-wrap img {
+            width: 88px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 0 30px rgba(0,255,13,0.2), 0 0 60px rgba(0,255,13,0.05);
+        }
+
+        .logo-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,255,13,0.3);
+            animation: spin 10s linear infinite;
+        }
+
+        .logo-ring::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .brand-name {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .sub-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.5rem;
+            color: var(--accent);
+            letter-spacing: 5px;
+        }
+
+        /* ---- SLIDER ---- */
+        .slider-wrap {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: 22px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .slider-track {
             display: flex;
-            width: 300%;
             height: 100%;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .slide { width: 100%; height: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) saturate(0.8);
+        }
 
         .slide-label {
-            position: absolute; bottom: 15px; left: 15px;
-            font-size: 0.6rem; background: rgba(0,0,0,0.7);
-            padding: 5px 12px; border-radius: 10px; border: 1px solid var(--accent);
+            position: absolute;
+            bottom: 14px; left: 14px;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--accent);
         }
 
-        /* --- LINKS --- */
-        .link-stack { display: flex; flex-direction: column; gap: 12px; }
+        .slider-dots {
+            position: absolute;
+            bottom: 14px; right: 14px;
+            display: flex; gap: 5px;
+        }
+
+        .dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .dot.active { background: var(--accent); box-shadow: 0 0 6px var(--accent); width: 14px; border-radius: 3px; }
+
+        /* ---- SECTION LABEL ---- */
+        .section-label {
+            font-size: 0.5rem;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.25);
+            margin: 0 4px 10px;
+            text-transform: uppercase;
+        }
+
+        /* ---- LINKS ---- */
+        .link-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
 
         .link-item {
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 16px; border-radius: 18px;
-            text-decoration: none; color: white;
-            display: flex; align-items: center; justify-content: flex-start;
-            gap: 15px;
-            transition: 0.3s; font-size: 0.75rem; letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 14px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .link-item i { width: 20px; text-align: center; font-size: 1.1rem; }
+        .link-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 60%, rgba(0,255,13,0.05));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .link-item:hover::before { opacity: 1; }
 
         .link-item:hover {
-            background: rgba(0, 255, 13, 0.1);
-            border-color: var(--accent);
-            transform: scale(1.02);
+            border-color: rgba(0,255,13,0.35);
+            transform: translateX(4px);
+            background: rgba(0,255,13,0.05);
         }
 
-        .cta-btn { background: var(--accent); color: black; font-weight: 900; }
-        .cta-btn i { color: black; }
+        .link-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
 
-        footer { margin-top: 25px; font-size: 0.6rem; opacity: 0.4; text-align: center; line-height: 1.5; }
+        .link-item:hover .link-icon { transform: scale(1.1) rotate(-5deg); }
 
+        .link-text { display: flex; flex-direction: column; gap: 1px; }
+        .link-title { font-weight: 700; font-size: 0.72rem; }
+        .link-sub { font-size: 0.52rem; opacity: 0.45; letter-spacing: 0.5px; }
+
+        .link-arrow {
+            margin-left: auto;
+            font-size: 0.65rem;
+            opacity: 0.3;
+            transition: 0.3s;
+        }
+        .link-item:hover .link-arrow { opacity: 0.8; transform: translateX(3px); }
+
+        /* CTA button */
+        .cta-btn {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0,255,13,0.2);
+        }
+        .cta-btn .link-icon { background: rgba(0,0,0,0.15); color: #000; }
+        .cta-btn .link-sub { opacity: 0.6; }
+        .cta-btn:hover {
+            background: #00e60b;
+            transform: translateX(4px);
+            box-shadow: 0 0 30px rgba(0,255,13,0.35);
+        }
+
+        /* Icon colors */
+        .icon-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+        .icon-fb { background: #1877F2; }
+        .icon-tt { background: #010101; border: 1px solid rgba(255,255,255,0.1); }
+        .icon-yt { background: #FF0000; }
+        .icon-dc { background: #5865F2; }
+        .icon-btc { background: linear-gradient(135deg, #F7931A, #FFB347); }
+        .icon-wa { background: #25D366; }
+
+        /* ---- STATS BAR ---- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stat-pill {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.48rem;
+            letter-spacing: 2px;
+            opacity: 0.4;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            text-align: center;
+            font-size: 0.52rem;
+            opacity: 0.3;
+            line-height: 2;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* ---- SCAN LINE EFFECT ---- */
+        @keyframes scanline {
+            0% { top: -5%; }
+            100% { top: 105%; }
+        }
+
+        .scanline {
+            position: fixed;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(transparent, rgba(0,255,13,0.04), transparent);
+            z-index: 5;
+            pointer-events: none;
+            animation: scanline 6s linear infinite;
+        }
     </style>
 </head>
 <body>
 
-    <div class="mesh-bg"></div>
+    <div class="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+    <div class="scanline"></div>
 
+    <!-- LOADER -->
     <div id="loader">
-        <div class="term-line">> INITIALIZING_YOUR_VIBE...</div>
-        <div class="term-line">> LOADING_YOUR_MOMENTS...</div>
-        <div class="term-line">> WELCOME_ANANMANAN_v2.1...</div>
+        <div class="loader-logo">ANANMANAN</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
+        </div>
+        <div class="loader-text">INITIALIZING VIBE SYSTEM</div>
     </div>
 
-    <div class="container">
-        <div class="brand-card">
-            <img src="annn.png" alt="Logo" style="width: 80px; margin-bottom: 20px;">
-            <h1 class="brand-name">ANANMANAN</h1>
-            <p class="sub-tag">FUTURISTIC WEAR</p>
+    <!-- MAIN -->
+    <div class="container" id="main">
 
-            <div class="slider-container">
-                <div class="slider-track" id="track">
-                    <div class="slide">
-                        <img src="8.png" alt="Product 1">
-                        <div class="slide-label">We Are Always Looking At You</div>
-                    </div>
-                    <div class="slide">
-                        <img src="p.png" alt="Product 2">
-                        <div class="slide-label">Wear The Vibe</div>
-                    </div>
-                    <div class="slide">
-                        <img src="u.jpg" alt="Product 3">
-                        <div class="slide-label">Adventure Starts Here</div>
-                    </div>
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-wrap">
+                <img src="https://ananmanan.store/i/annn.png" alt="ANANMANAN Logo">
+                <div class="logo-ring"></div>
+            </div>
+            <h1 class="brand-name">ANANMANAN</h1>
+            <p class="sub-tag">FUTURISTIC WEAR — EST. 2024</p>
+        </div>
+
+        <!-- Slider -->
+        <div class="slider-wrap">
+            <div class="slider-track" id="track">
+                <div class="slide">
+                    <img src="8.png" alt="Product 1">
+                    <div class="slide-label">WE ARE ALWAYS LOOKING AT YOU</div>
+                </div>
+                <div class="slide">
+                    <img src="p.png" alt="Product 2">
+                    <div class="slide-label">WEAR THE VIBE</div>
+                </div>
+                <div class="slide">
+                    <img src="u.jpg" alt="Product 3">
+                    <div class="slide-label">ADVENTURE STARTS HERE</div>
                 </div>
             </div>
-
-            <div class="link-stack">
-                <a href="https://ananmanan.store" class="link-item cta-btn">
-                    <i class="fas fa-bolt"></i>
-                    <span>SHOP NEW ARRIVALS</span>
-                </a>
-                <a href="https://www.instagram.com/wear.ananmanan" class="link-item">
-                    <i class="fab fa-instagram"></i>
-                    <span>Follow Instagram</span>
-                </a>
-                 <a href="https://www.facebook.com/ananmanan327" class="link-item">
-                    <i class="fab fa-facebook-f"></i>
-                    <span>Follow Facebook</span>
-                </a>
-                <a href="https://www.tiktok.com/@wear.ananmanan" class="link-item">
-                    <i class="fab fa-tiktok"></i>
-                    <span>Follow TikTok</span>
-                </a>
-                <a href="https://discord.gg/PG9BAPf8" class="link-item">
-                    <i class="fab fa-discord"></i>
-                    <span>Join Discord</span>
-                </a>
+            <div class="slider-dots">
+                <div class="dot active" onclick="goTo(0)"></div>
+                <div class="dot" onclick="goTo(1)"></div>
+                <div class="dot" onclick="goTo(2)"></div>
             </div>
         </div>
 
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-pill">
+                <span class="stat-num">1K+</span>
+                <span class="stat-label">FOLLOWERS</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-num">25+</span>
+                <span class="stat-label">DROPS</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-num">v2.1</span>
+                <span class="stat-label">SEASON</span>
+            </div>
+        </div>
+
+        <!-- Shop -->
+        <p class="section-label">// SHOP</p>
+        <div class="link-stack">
+            <a href="https://ananmanan.store" class="link-item cta-btn">
+                <div class="link-icon"><i class="fas fa-bolt"></i></div>
+                <div class="link-text">
+                    <span class="link-title">SHOP NEW ARRIVALS</span>
+                    <span class="link-sub">ananmanan.store</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+        </div>
+
+        <!-- Socials -->
+        <p class="section-label">// SOCIALS</p>
+        <div class="link-stack">
+            <a href="https://www.instagram.com/wear.ananmanan" class="link-item">
+                <div class="link-icon icon-ig"><i class="fab fa-instagram"></i></div>
+                <div class="link-text">
+                    <span class="link-title">Instagram</span>
+                    <span class="link-sub">@wear.ananmanan</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+
+            <a href="https://www.youtube.com/@Wear.Ananmanan" class="link-item">
+                <div class="link-icon icon-yt"><i class="fab fa-youtube"></i></div>
+                <div class="link-text">
+                    <span class="link-title">YouTube</span>
+                    <span class="link-sub">Watch our drops</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@wear.ananmanan" class="link-item">
+                <div class="link-icon icon-tt"><i class="fab fa-tiktok"></i></div>
+                <div class="link-text">
+                    <span class="link-title">TikTok</span>
+                    <span class="link-sub">@wear.ananmanan</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+
+            <a href="https://www.facebook.com/ananmanan327" class="link-item">
+                <div class="link-icon icon-fb"><i class="fab fa-facebook-f"></i></div>
+                <div class="link-text">
+                    <span class="link-title">Facebook</span>
+                    <span class="link-sub">ananmanan327</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+        </div>
+
+        <!-- Community & More -->
+        <p class="section-label">// COMMUNITY</p>
+        <div class="link-stack">
+            <a href="https://discord.gg/PG9BAPf8" class="link-item">
+                <div class="link-icon icon-dc"><i class="fab fa-discord"></i></div>
+                <div class="link-text">
+                    <span class="link-title">Discord</span>
+                    <span class="link-sub">Join the squad</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+
+            <a href="https://wa.me/94000000000" class="link-item">
+                <div class="link-icon icon-wa"><i class="fab fa-whatsapp"></i></div>
+                <div class="link-text">
+                    <span class="link-title">WhatsApp</span>
+                    <span class="link-sub">Direct orders & enquiries</span>
+                </div>
+                <i class="fas fa-arrow-right link-arrow"></i>
+            </a>
+
         <footer>
-           Adventure Starts Here<br>
-            &copy; 2026 Ananmanan Store. All rights reserved.
+            ADVENTURE STARTS HERE &nbsp;·&nbsp; FUTURISTIC WEAR<br>
+            &copy; 2026 ANANMANAN STORE. ALL RIGHTS RESERVED.
         </footer>
+
     </div>
 
     <script>
-        // Loader Logic
+        // Loader
         window.addEventListener('load', () => {
-            const lines = document.querySelectorAll('.term-line');
-            lines.forEach((l, i) => setTimeout(() => l.style.opacity = 1, i * 400));
-            setTimeout(() => document.getElementById('loader').style.transform = "translateY(-100%)", 2000);
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('main').classList.add('visible');
+                }, 900);
+            }, 2300);
         });
 
-        // Slider Logic
-        const track = document.getElementById('track');
+        // Slider
         let index = 0;
-        
-        setInterval(() => {
-            index = (index + 1) % 3;
-            track.style.transform = `translateX(-${index * 33.333}%)`;
-        }, 3500);
+        const track = document.getElementById('track');
+        const dots = document.querySelectorAll('.dot');
+
+        function goTo(i) {
+            index = i;
+            track.style.transform = `translateX(-${i * 100}%)`;
+            dots.forEach((d, j) => d.classList.toggle('active', j === i));
+        }
+
+        setInterval(() => goTo((index + 1) % 3), 3500);
     </script>
 </body>
 </html>
